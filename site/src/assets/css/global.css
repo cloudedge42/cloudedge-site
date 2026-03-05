@@ -1,0 +1,69 @@
+:root {
+  --dark: #111921;
+
+  --white: 226 233 240;
+  --brand: #3bd671;
+  --dark-grey: #1c2834;
+  --grey: #72889e;
+}
+
+body {
+  /* background-color: var(--dark-grey); */
+  /* background-image: linear-gradient(
+    to right,
+    #1c2834,
+    #1f2b36,
+    #222d38,
+    #26303b,
+    #29333d,
+    #28323c,
+    #27313a,
+    #263039,
+    #212b34,
+    #1c262f,
+    #18212a,
+    #131c25
+  ); */
+  background-image: linear-gradient(
+    to left,
+    #111921,
+    #141d26,
+    #16202a,
+    #19242f,
+    #1c2834
+  );
+  color: rgb(var(--white));
+  font-family: "Space Grotesk Variable", sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  color: var(--brand);
+  /* margin-block-start: 1em; */
+}
+
+main > *,
+article > * {
+  margin-block-start: 1em;
+}
+
+main > :first-child,
+article > :first-child {
+  margin-block-start: 0;
+}
+
+.wrapper {
+  max-width: 1024px;
+  margin-inline: auto;
+  padding-inline: 1rem;
+  min-height: 100dvh;
+  justify-content: space-between;
+  display: flex;
+  flex-direction: column;
+}
+
+.app-main {
+  flex: 1;
+}

@@ -15,6 +15,19 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm ci
+        working-directory: site
+
+      - name: Build Astro site
+        run: npm run build
+        working-directory: site
+
       - name: Configure AWS credentials (OIDC)
         uses: aws-actions/configure-aws-credentials@v4
         with:
@@ -22,7 +35,7 @@ jobs:
           aws-region: ${{ vars.AWS_REGION }}
 
       - name: Sync to S3
-        run: aws s3 sync site/ s3://${{ vars.S3_BUCKET }} --delete
+        run: aws s3 sync site/dist/ s3://${{ vars.S3_BUCKET }} --delete
 
       - name: Invalidate CloudFront
         run: aws cloudfront create-invalidation --distribution-id ${{ vars.CLOUDFRONT_DIST_ID }} --paths "/*"

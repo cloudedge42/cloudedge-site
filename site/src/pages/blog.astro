@@ -1,0 +1,17 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { getEntry } from "astro:content";
+
+const page = await getEntry("pages", "blog");
+
+if (!page) {
+  throw new Error('Missing content entry: "pages/blog".');
+}
+
+const { Content } = await page.render();
+---
+
+<Layout title={page.data.title} description={page.data.description}>
+  <h1>{page.data.title}</h1>
+  <Content />
+</Layout>

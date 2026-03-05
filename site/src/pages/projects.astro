@@ -1,0 +1,66 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { getCollection, getEntry } from "astro:content";
+
+const page = await getEntry("pages", "projects");
+
+if (!page) {
+  throw new Error('Missing content entry: "pages/projects".');
+}
+
+const { Content } = await page.render();
+
+// Sort newest projects first to keep the list current.
+const projects = (await getCollection("projects")).sort(
+  (a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf(),
+);
+---
+
+<Layout title={page.data.title} description={page.data.description}>
+  <h1>{page.data.title}</h1>
+  <Content />
+
+  <section aria-label="Project posts">
+    <h2>Project Details</h2>
+
+    {
+      projects.length > 0 ? (
+        <ul class="projects-list">
+          {projects.map((project) => (
+            <li>
+              <a href={`/projects/${project.slug}/`}>{project.data.title}</a>
+              <p>{project.data.summary}</p>
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <p>No project posts yet.</p>
+      )
+    }
+  </section>
+</Layout>
+
+<style>
+  .projects-list {
+    list-style: none;
+    padding: 0;
+    margin-block-start: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  h2 {
+    margin-block-end: 1rem;
+  }
+
+  .projects-list li {
+    border: 1px solid rgb(var(--white));
+    border-radius: 0.75rem;
+    padding: 1rem;
+  }
+
+  .projects-list p {
+    margin-bottom: 0;
+  }
+</style>
