@@ -1,0 +1,37 @@
+---
+title: "Home Network: OPNsense and AdGuard Home"
+description: Configuring DNS filtering and local hostname resolution with OPNsense, AdGuard Home and Unbound.
+category: Personal home lab
+summary: Configuring DNS filtering and local hostname resolution using OPNsense, AdGuard Home and Unbound, with practical checks to confirm the setup was working.
+publishDate: 2026-10-25
+---
+
+## Overview
+
+This project involved configuring AdGuard Home on my OPNsense firewall to
+provide DNS filtering, while maintaining local hostname resolution through
+Unbound.
+
+## Goal
+
+I wanted to reduce my reliance on a browser ad-blocking extension and understand
+how DNS filtering works within my home network.
+
+## What I worked on
+
+- Installing AdGuard Home on OPNsense.
+- Configuring DNS filtering with the default AdGuard filter.
+- Configuring local hostname resolution using Unbound and the home.arpa domain.
+- Investigating DNS behaviour and adjusting the configuration.
+- Testing blocked domains and local hostname lookups.
+
+## Verification
+
+I checked that a blocked advertising domain, doubleclick.net, resolved to
+0.0.0.0, and separately confirmed that local hostnames resolved correctly.
+
+## What I learned
+
+The project helped me understand the relationship between DNS filtering and
+local name resolution, and the importance of testing each part of a
+configuration when troubleshooting.
