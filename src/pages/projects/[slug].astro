@@ -20,10 +20,15 @@ const { Content } = await project.render();
     <h1>{project.data.title}</h1>
     <p>{project.data.category}</p>
     <p>{project.data.summary}</p>
-    <p>
-      <small>Published on {project.data.publishDate.toLocaleDateString()}</small
-      >
-    </p>
+    {
+      project.data.publishDate && (
+        <p>
+          <small>
+            Published on {project.data.publishDate.toLocaleDateString()}
+          </small>
+        </p>
+      )
+    }
     <Content />
   </article>
 </Layout>

@@ -16,7 +16,7 @@ const projectsCollection = defineCollection({
     description: z.string(),
     category: z.string(),
     summary: z.string(),
-    publishDate: z.coerce.date(),
+    publishDate: z.coerce.date().optional(),
   }),
 });
 

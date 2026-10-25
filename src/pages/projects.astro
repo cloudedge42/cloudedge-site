@@ -10,10 +10,19 @@ if (!page) {
 
 const { Content } = await page.render();
 
-// Sort newest projects first to keep the list current.
-const projects = (await getCollection("projects")).sort(
-  (a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf(),
-);
+// Keep the projects in the intended portfolio order without inventing dates.
+const projectOrder = [
+  "windows-server-active-directory-lab",
+  "home-network-opnsense-and-adguard-home",
+  "building-my-home-pc",
+];
+
+const projects = (await getCollection("projects")).sort((a, b) => {
+  const aPosition = projectOrder.indexOf(a.slug);
+  const bPosition = projectOrder.indexOf(b.slug);
+
+  return aPosition - bPosition;
+});
 ---
 
 <Layout title={page.data.title} description={page.data.description}>
