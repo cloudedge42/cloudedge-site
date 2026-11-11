@@ -76,6 +76,14 @@ import { Icon } from "astro-icon/components";
         >
           <Icon name="tabler:brand-github" class="icon" />
         </a>
+        <a
+          href="https://www.linkedin.com/in/samcloudedge/"
+          aria-label="Sam Gardiner on LinkedIn"
+          target="_blank"
+          rel="noreferrer"
+        >
+          <Icon name="tabler:brand-linkedin" class="icon" />
+        </a>
       </div>
     </div>
   </div>
@@ -136,6 +144,12 @@ import { Icon } from "astro-icon/components";
     height: 1.5rem;
   }
 
+  .icons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.75rem;
+  }
+
   @media (max-width: 767px) {
     .header--inner {
       flex-direction: column;
@@ -146,6 +160,10 @@ import { Icon } from "astro-icon/components";
 
     .header-right {
       text-align: center;
+    }
+
+    .icons {
+      justify-content: center;
     }
 
     .header-left svg {
